@@ -4,6 +4,7 @@ static func get_story() -> Dictionary:
 	return {
 		"1": {
 			"pages": ["Você é um trabalhador prestes a atravessar os enormes portões metálicos dos Laboratórios do Governo Universal.\n\nO ar entra e sai rapidamente dos seus pulmões. Antes de dar o primeiro passo, você decide ignorar a pergunta que assombra os seus dias: o que você irá encontrar entre os vácuos da sua rotina de trabalho nesse lugar?"],
+			"art": ["res://art/1.txt"],
 			"choices": [
 				{"label": "Ir para o trabalho.", "next": "2"},
 				{"label": "Ficar em casa e faltar sem autorização.", "next": "17"}
@@ -11,6 +12,7 @@ static func get_story() -> Dictionary:
 		},
 		"2": {
 			"pages": ["Como no dia anterior e no dia antes desse, você se apresenta no vestiário dos Laboratórios, cheio de outras caras cansadas.\n\nHoje os uniformes são entregues limpos e aquecidos, recém-saídos da esterilização.", "\"Eles até lavam a nossa roupa em dia de limpeza, né?\"\n\nUm homem ainda não identificado pelo uniforme te dirige a palavra. Hoje é dia de limpeza: exames e procedimentos que garantem a saúde dos trabalhadores e a eficácia do trabalho."],
+			"art": ["res://art/2.txt"],
 			"choices": [
 				{"label": "Rir e comentar que os exames são desconfortáveis.", "next": "3"},
 				{"label": "Concordar em silêncio. Parece mais seguro.", "next": "5"}

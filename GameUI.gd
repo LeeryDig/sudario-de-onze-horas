@@ -2,6 +2,7 @@ extends Control
 
 const Story := preload("res://Story.gd")
 
+@onready var ascii_background: Label = $Background/ASCIIBackground
 @onready var game_text: RichTextLabel = $Background/MarginContainer/Rows/GameText
 @onready var choices_container: VBoxContainer = $Background/MarginContainer/Rows/ChoicesContainer
 
@@ -25,6 +26,8 @@ func render_current_page() -> void:
 	var pages: Array = node.get("pages", [])
 	var text := str(pages[current_page])
 
+	render_background_art(node)
+
 	if node.has("ending"):
 		text = "[center][b]%s[/b][/center]\n\n%s" % [node["ending"], text]
 
@@ -41,6 +44,17 @@ func render_current_page() -> void:
 		add_choice_button(choice["label"], func() -> void:
 			handle_choice(choice)
 		)
+
+func render_background_art(node: Dictionary) -> void:
+	ascii_background.text = ""
+
+	var art_pages: Array = node.get("art", [])
+	if current_page >= art_pages.size():
+		return
+
+	var art_path := str(art_pages[current_page])
+	if not art_path.is_empty() and FileAccess.file_exists(art_path):
+		ascii_background.text = FileAccess.get_file_as_string(art_path)
 
 func handle_choice(choice: Dictionary) -> void:
 	if choice.has("random_next"):
