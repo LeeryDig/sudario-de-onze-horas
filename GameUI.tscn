@@ -1,85 +1,85 @@
-[gd_scene load_steps=4 format=3 uid="uid://cj2thjd68d1m4"]
+[gd_scene load_steps=5 format=3 uid="uid://cj2thjd68d1m4"]
 
 [ext_resource type="Script" uid="uid://dcwd1h6r3wto2" path="res://GameUI.gd" id="1_gameui"]
+[ext_resource type="Theme" uid="uid://bisxy8sqrpawt" path="res://ui/GameTheme.tres" id="2_theme"]
+[ext_resource type="PackedScene" path="res://ui/ChoiceButton.tscn" id="3_choice_button"]
 
 [sub_resource type="SystemFont" id="SystemFont_ascii"]
 font_names = PackedStringArray("Menlo", "Consolas", "DejaVu Sans Mono", "monospace")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
-content_margin_left = 12.0
-content_margin_top = 8.0
-content_margin_right = 12.0
-content_margin_bottom = 8.0
-bg_color = Color(0, 0.14, 0.035, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0.768627, 0.168627, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[node name="Control" type="Control"]
+[node name="GameUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_theme")
 script = ExtResource("1_gameui")
 
-[node name="Background" type="PanelContainer" parent="."]
+[node name="BackgroundColor" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0.047058824, 0.12156863, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Background"]
-layout_mode = 2
-color = Color(0.0015244031, 0.04795999, 0.120461784, 1)
+[node name="NarrativeArea" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.011000001
+anchor_right = 0.9
+anchor_bottom = 0.62
+offset_left = -0.20000458
+offset_top = -0.12800074
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="ASCIIBackground" type="Label" parent="Background"]
+[node name="GameText" type="RichTextLabel" parent="NarrativeArea"]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.7756954, 0.87639374, 0.995825, 0.12)
+bbcode_enabled = true
+scroll_following = true
+
+[node name="ASCIIBackground" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 755.3282
+offset_bottom = 425.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = SubResource("SystemFont_ascii")
 theme_override_font_sizes/font_size = 11
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
-[node name="MarginContainer" type="MarginContainer" parent="Background"]
-layout_mode = 2
+[node name="ChoicesArea" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.64
+anchor_right = 0.9
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_bottom = 10
 
-[node name="Rows" type="VBoxContainer" parent="Background/MarginContainer"]
+[node name="ChoicesContainer" type="VBoxContainer" parent="ChoicesArea"]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 20
-alignment = 1
+alignment = 2
 
-[node name="GameText" type="RichTextLabel" parent="Background/MarginContainer/Rows"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/default_color = Color(0.7756954, 0.87639374, 0.995825, 1)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-scroll_following = true
-
-[node name="ChoicesContainer" type="VBoxContainer" parent="Background/MarginContainer/Rows"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="ExampleButton" type="Button" parent="Background/MarginContainer/Rows/ChoicesContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxFlat_button")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_button")
-theme_override_styles/hover = SubResource("StyleBoxFlat_button")
-text = "Carregando..."
-alignment = 0
+[node name="ChoicePreview" parent="ChoicesArea/ChoicesContainer" instance=ExtResource("3_choice_button")]

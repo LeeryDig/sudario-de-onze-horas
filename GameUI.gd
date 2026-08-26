@@ -1,10 +1,11 @@
 extends Control
 
 const Story := preload("res://Story.gd")
+const ChoiceButtonScene: PackedScene = preload("res://ui/ChoiceButton.tscn")
 
-@onready var ascii_background: Label = $Background/ASCIIBackground
-@onready var game_text: RichTextLabel = $Background/MarginContainer/Rows/GameText
-@onready var choices_container: VBoxContainer = $Background/MarginContainer/Rows/ChoicesContainer
+@onready var ascii_background: Label = %ASCIIBackground
+@onready var game_text: RichTextLabel = %GameText
+@onready var choices_container: VBoxContainer = %ChoicesContainer
 
 var story: Dictionary = Story.get_story()
 var current_node_id := "1"
@@ -65,12 +66,8 @@ func handle_choice(choice: Dictionary) -> void:
 	show_node(str(choice["next"]))
 
 func add_choice_button(label: String, callback: Callable) -> void:
-	var button := Button.new()
+	var button := ChoiceButtonScene.instantiate() as Button
 	button.text = label
-	button.alignment = HORIZONTAL_ALIGNMENT_LEFT
-	button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	button.add_theme_font_size_override("font_size", 18)
 	button.pressed.connect(callback)
 	choices_container.add_child(button)
 

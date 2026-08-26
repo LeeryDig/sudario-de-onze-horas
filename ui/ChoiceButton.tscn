@@ -1,0 +1,10 @@
+[gd_scene format=3]
+
+[node name="ChoiceButton" type="Button"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+text = "Texto de exemplo da escolha"
+alignment = 0
+autowrap_mode = 2
