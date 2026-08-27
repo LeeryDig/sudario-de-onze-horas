@@ -5,6 +5,7 @@ const ChoiceButtonScene: PackedScene = preload("res://ui/ChoiceButton.tscn")
 const ASCII_MIN_FONT_SIZE := 4
 const ASCII_MAX_FONT_SIZE := 11
 
+@onready var art_area: Control = %ArtArea
 @onready var ascii_background: Label = %ASCIIBackground
 @onready var game_text: RichTextLabel = %GameText
 @onready var choices_container: VBoxContainer = %ChoicesContainer
@@ -59,17 +60,22 @@ func render_background_art(node: Dictionary) -> void:
 	var art_index := mini(current_page, art_pages.size() - 1)
 	var art_path := str(art_pages[art_index])
 	if not art_path.is_empty() and FileAccess.file_exists(art_path):
-		ascii_background.text = FileAccess.get_file_as_string(art_path)
+		var art_text := FileAccess.get_file_as_string(art_path)
+		while art_text.ends_with("\n") or art_text.ends_with("\r"):
+			art_text = art_text.substr(0, art_text.length() - 1)
+		ascii_background.text = art_text
 		queue_ascii_art_fit()
 
 func queue_ascii_art_fit() -> void:
 	_fit_ascii_art.call_deferred()
 
 func _fit_ascii_art() -> void:
-	if ascii_background.text.is_empty() or ascii_background.size.x <= 0.0 or ascii_background.size.y <= 0.0:
+	if ascii_background.text.is_empty() or art_area.size.x <= 0.0 or art_area.size.y <= 0.0:
 		return
 
+	var available_size := art_area.size
 	var font := ascii_background.get_theme_font("font")
+	var line_spacing := ascii_background.get_theme_constant("line_spacing")
 	var lines := ascii_background.text.split("\n")
 	var selected_size := ASCII_MIN_FONT_SIZE
 
@@ -79,7 +85,8 @@ func _fit_ascii_art() -> void:
 			required_width = maxf(required_width, font.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x)
 
 		var required_height := font.get_height(font_size) * lines.size()
-		if required_width <= ascii_background.size.x and required_height <= ascii_background.size.y:
+		required_height += line_spacing * maxi(lines.size() - 1, 0)
+		if required_width <= available_size.x and required_height <= available_size.y:
 			selected_size = font_size
 			break
 
