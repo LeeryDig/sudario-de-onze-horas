@@ -2,6 +2,8 @@ extends Control
 
 const Story := preload("res://Story.gd")
 const ChoiceButtonScene: PackedScene = preload("res://ui/ChoiceButton.tscn")
+const ASCII_MIN_FONT_SIZE := 4
+const ASCII_MAX_FONT_SIZE := 11
 
 @onready var ascii_background: Label = %ASCIIBackground
 @onready var game_text: RichTextLabel = %GameText
@@ -13,6 +15,7 @@ var current_page := 0
 
 func _ready() -> void:
 	randomize()
+	resized.connect(queue_ascii_art_fit)
 	show_node("1")
 
 func show_node(node_id: String) -> void:
@@ -50,12 +53,37 @@ func render_background_art(node: Dictionary) -> void:
 	ascii_background.text = ""
 
 	var art_pages: Array = node.get("art", [])
-	if current_page >= art_pages.size():
+	if art_pages.is_empty():
 		return
 
-	var art_path := str(art_pages[current_page])
+	var art_index := mini(current_page, art_pages.size() - 1)
+	var art_path := str(art_pages[art_index])
 	if not art_path.is_empty() and FileAccess.file_exists(art_path):
 		ascii_background.text = FileAccess.get_file_as_string(art_path)
+		queue_ascii_art_fit()
+
+func queue_ascii_art_fit() -> void:
+	_fit_ascii_art.call_deferred()
+
+func _fit_ascii_art() -> void:
+	if ascii_background.text.is_empty() or ascii_background.size.x <= 0.0 or ascii_background.size.y <= 0.0:
+		return
+
+	var font := ascii_background.get_theme_font("font")
+	var lines := ascii_background.text.split("\n")
+	var selected_size := ASCII_MIN_FONT_SIZE
+
+	for font_size in range(ASCII_MAX_FONT_SIZE, ASCII_MIN_FONT_SIZE - 1, -1):
+		var required_width := 0.0
+		for line in lines:
+			required_width = maxf(required_width, font.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x)
+
+		var required_height := font.get_height(font_size) * lines.size()
+		if required_width <= ascii_background.size.x and required_height <= ascii_background.size.y:
+			selected_size = font_size
+			break
+
+	ascii_background.add_theme_font_size_override("font_size", selected_size)
 
 func handle_choice(choice: Dictionary) -> void:
 	if choice.has("random_next"):
