@@ -100,10 +100,9 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 5
-alignment = 0
 
 [node name="ChoicePreview" parent="MainMargin/MainLayout/ChoicesArea/ChoicesRow/ChoicesContainer" instance=ExtResource("3_choice_button")]
-custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
 
 [node name="ChoiceSpacer" type="Control" parent="MainMargin/MainLayout/ChoicesArea/ChoicesRow"]
 layout_mode = 2
