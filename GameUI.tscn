@@ -27,6 +27,17 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
+[node name="RainLayer" type="Control" parent="."]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="MainMargin" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -63,7 +74,76 @@ horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
+[node name="MenuArea" type="MarginContainer" parent="MainMargin/MainLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 5
+
+[node name="MenuLayout" type="VBoxContainer" parent="MainMargin/MainLayout/MenuArea"]
+layout_mode = 2
+
+[node name="TopSpacer" type="Control" parent="MainMargin/MainLayout/MenuArea/MenuLayout"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="MainMenu" type="VBoxContainer" parent="MainMargin/MainLayout/MenuArea/MenuLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="StartButton" parent="MainMargin/MainLayout/MenuArea/MenuLayout/MainMenu" instance=ExtResource("3_choice_button")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Iniciar"
+alignment = 1
+
+[node name="OptionsButton" parent="MainMargin/MainLayout/MenuArea/MenuLayout/MainMenu" instance=ExtResource("3_choice_button")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Opções"
+alignment = 1
+
+[node name="OptionsMenu" type="VBoxContainer" parent="MainMargin/MainLayout/MenuArea/MenuLayout"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="OptionsTitle" type="Label" parent="MainMargin/MainLayout/MenuArea/MenuLayout/OptionsMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Opções"
+horizontal_alignment = 1
+
+[node name="BackButton" parent="MainMargin/MainLayout/MenuArea/MenuLayout/OptionsMenu" instance=ExtResource("3_choice_button")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Voltar"
+alignment = 1
+
+[node name="BottomSpacer" type="Control" parent="MainMargin/MainLayout/MenuArea/MenuLayout"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Credits" type="Label" parent="MainMargin/MainLayout/MenuArea/MenuLayout"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Escrito por: Stella D'Avansso
+Desenvolvido por: Guilherme Abrahão e Luiz Malta"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="NarrativeArea" type="MarginContainer" parent="MainMargin/MainLayout"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
@@ -84,6 +164,8 @@ bbcode_enabled = true
 scroll_following = true
 
 [node name="ChoicesArea" type="MarginContainer" parent="MainMargin/MainLayout"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
