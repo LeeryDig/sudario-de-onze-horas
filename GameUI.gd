@@ -4,7 +4,7 @@ const Story := preload("res://Story.gd")
 const ChoiceButtonScene: PackedScene = preload("res://ui/ChoiceButton.tscn")
 const ASCII_MIN_FONT_SIZE := 4
 const ASCII_MAX_FONT_SIZE := 11
-const MENU_ART_PATH := "res://art/14.txt"
+const MENU_ART_PATH := "res://art/Menu.txt"
 const RAIN_DROP_COUNT := 45
 
 @onready var art_area: Control = %ArtArea

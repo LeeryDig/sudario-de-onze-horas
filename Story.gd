@@ -11,7 +11,7 @@ static func get_story() -> Dictionary:
 			]
 		},
 		"2": {
-			"pages": ["Como no dia anterior e no dia antes desse, você se apresenta no vestiário dos Laboratórios, cheio de outras caras cansadas.\n\nHoje os uniformes são entregues limpos e aquecidos, recém-saídos da esterilização.", "\"Eles até lavam a nossa roupa em dia de limpeza, né?\"\n\nUm homem ainda não identificado pelo uniforme te dirige a palavra. Hoje é dia de limpeza: exames e procedimentos que garantem a saúde dos trabalhadores e a eficácia do trabalho."],
+			"pages": ["Como no dia anterior e no dia antes desse, você se apresenta no vestiário dos Laboratórios, cheio de outras caras cansadas.\n\nHoje, os uniformes são entregues limpos e aquecidos, recém-saídos da esterilização.", "\"Eles até lavam a nossa roupa em dia de limpeza, né?\"\n\nUm homem ainda não identificado pelo uniforme te dirige a palavra. Hoje é dia de limpeza: exames e procedimentos que garantem a saúde dos trabalhadores e a eficácia do trabalho."],
 			"art": ["res://art/2.txt"],
 			"choices": [
 				{"label": "Rir e comentar que os exames são desconfortáveis.", "next": "3"},
@@ -36,7 +36,7 @@ static func get_story() -> Dictionary:
 			]
 		},
 		"5": {
-			"pages": ["Devidamente uniformizado, você aguarda sua vez de passar pela limpeza. O silêncio prolonga a espera por dezenas de minutos.", "A sala branca tem um cheiro característico. Uma enfermeira mede seu peso e prepara uma injeção.\n\nEla pergunta se você observou alguma alteração na saúde nos últimos dias. Sua memória lembra espirros e febre leve, curados por uma infusão de ervas da vizinha."],
+			"pages": ["Devidamente uniformizado, você aguarda sua vez de passar pela limpeza. O silêncio prolonga a espera por dezenas de minutos.", "A sala branca tem um cheiro característico. Uma enfermeira mede seu peso e prepara uma injeção.\n\nEla pergunta se você observou alguma alteração na saúde nos últimos dias. Sua memória lembra de espirros e febre leve, curados por uma infusão de ervas da vizinha."],
 			"art": ["res://art/5.txt"], 
 			"choices": [
 				{"label": "Mentir e dizer que não observou nada.", "next": "6"},
@@ -44,7 +44,7 @@ static func get_story() -> Dictionary:
 			]
 		},
 		"6": {
-			"pages": ["A enfermeira injeta a substância no seu braço. Os resultados preliminares saem rapidamente.\n\nAparentemente está tudo bem, mas há falta de vitaminas. Ela oferece um pequeno comprimido."],
+			"pages": ["A enfermeira injeta a substância no seu braço. Os resultados preliminares saem rapidamente.\n\nAparentemente está tudo bem, mas há falta de vitaminas. Ela te oferece um pequeno comprimido."],
 			"art": ["res://art/6.txt"],
 			"choices": [{"label": "Tomar o comprimido e iniciar o trabalho.", "next": "16"}]
 		},
@@ -92,13 +92,13 @@ static func get_story() -> Dictionary:
 			"choices": [{"label": "Ir embora.", "next": "14"}, {"label": "Descansar e esperar no vestiário.", "next": "15"}]
 		},
 		"14": {
-			"pages": ["Você caminha de volta para casa em silêncio, sem acreditar que sobreviveu.\n\nUma mulher vende flores no caminho. Você pega uma onze-horas com a promessa de pagar depois e a coloca no chão.\n\nA flor será o sudário de um mundo que nunca existiu — ou que você nunca viu."],
+			"pages": ["Você caminha de volta para casa em silêncio. Você sobreviveu a mais um dia.\n\nUma mulher vende flores no caminho. Você pega uma onze-horas com a promessa de pagar depois e a coloca no chão.\n\nA flor será o sudário de um mundo que nunca existiu — ou que você nunca viu."],
 			"art": ["res://art/14.txt"],
 			"ending": "FINAL 4",
 			"choices": [{"label": "Recomeçar", "next": "1"}]
 		},
 		"15": {
-			"pages": ["Depois de um dia intenso, você espera no vestiário. Após 30 minutos, um homem aparece. Ele não parece trabalhador nem guarda.\n\nEle sorri e aponta uma arma.\n\n\"Tava querendo meter o nariz onde não deve, né?\"", "Ele te leva até uma cabine. Há uma pilha de corpos. Um deles é o homem com quem você conversou mais cedo.\n\nO disparo não faz barulho. Sua vida escapa enquanto ele joga uma flor no seu peito."],
+			"pages": ["Depois de um dia intenso, você espera no vestiário. Após 30 minutos, um homem aparece. Ele não parece trabalhador, nem guarda.\n\nEle sorri e aponta uma arma na sua direção.\n\n\"Tava querendo meter o nariz onde não deve, né?\"", "Ele te leva até uma cabine. Há uma pilha de corpos. Um deles é o homem com quem você conversou mais cedo.\n\nO disparo não faz barulho. Sua vida escapa enquanto o seu assassino joga uma flor no seu peito."],
 			"art": ["res://art/15.txt"],
 			"ending": "FINAL 3",
 			"choices": [{"label": "Voltar ao início", "next": "1"}]
@@ -109,7 +109,7 @@ static func get_story() -> Dictionary:
 			"choices": [{"label": "Ir embora.", "next": "14"}, {"label": "Esperar mais um pouco no vestiário.", "next": "15"}]
 		},
 		"17": {
-			"pages": ["Você decide tirar o dia para descansar, sem justificativa. Enquanto seus vizinhos seguem para o trabalho, alguns olham sua janela com receio.", "Horas depois, guardas arrombam sua porta e te agarram. Um deles corta um dos seus dedos. Uma enfermeira faz um curativo improvisado.\n\n\"Você não cumpriu seu dia de trabalho obrigatório. Terá 24 horas para se recuperar e deverá comparecer ao trabalho, do contrário será banido.\""],
+			"pages": ["Você decide tirar o dia para descansar, sem justificativa. Enquanto seus vizinhos seguem para o trabalho, alguns olham sua janela com receio.", "Horas depois, guardas arrombam sua porta e te agarram.\n\n\"Você não cumpriu seu dia de trabalho obrigatório. Terá 24 horas para se recuperar e deverá comparecer ao trabalho, do contrário será banido.\n\n\"Um deles corta um dos seus dedos. Uma enfermeira faz um curativo improvisado.\""],
 			"choices": [{"label": "Se recuperar e voltar ao trabalho.", "next": "25"}]
 		},
 		"18": {
@@ -144,7 +144,7 @@ static func get_story() -> Dictionary:
 			]
 		},
 		"23": {
-			"pages": ["Sua curiosidade vence. Você segue o homem por um corredor mal iluminado e o perde de vista.\n\nEle te surpreende com um pedaço de vidro e golpeia seu pescoço. Enquanto você dá os últimos suspiros, ele diz:\n\n\"Você nunca irá me parar, eu sou a Primeira Estrela!\""],
+			"pages": ["Sua curiosidade vence. Você segue o homem por um corredor mal iluminado e o perde de vista.\n\nEle te surpreende com um pedaço de vidro e golpeia seu pescoço. Enquanto você dá os últimos suspiros, ele diz enlouquecido:\n\n\"Você nunca irá me parar, eu sou a Primeira Estrela!\""],
 			"ending": "FINAL 8",
 			"choices": [{"label": "Voltar ao início", "next": "1"}]
 		},

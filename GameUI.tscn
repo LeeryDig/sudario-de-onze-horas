@@ -2,10 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dcwd1h6r3wto2" path="res://GameUI.gd" id="1_gameui"]
 [ext_resource type="Theme" uid="uid://bisxy8sqrpawt" path="res://ui/GameTheme.tres" id="2_theme"]
+[ext_resource type="FontFile" uid="uid://dcwvfc6o60i3r" path="res://art/JetBrainsMono-Medium.ttf" id="3_b7guu"]
 [ext_resource type="PackedScene" uid="uid://ch2r35ob5k4o2" path="res://ui/ChoiceButton.tscn" id="3_choice_button"]
-
-[sub_resource type="SystemFont" id="SystemFont_ascii"]
-font_names = PackedStringArray("Menlo", "Consolas", "DejaVu Sans Mono", "monospace")
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -53,7 +51,6 @@ layout_mode = 2
 
 [node name="ArtArea" type="Control" parent="MainMargin/MainLayout"]
 unique_name_in_owner = true
-clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 7.0
@@ -61,14 +58,16 @@ size_flags_stretch_ratio = 7.0
 [node name="ASCIIBackground" type="Label" parent="MainMargin/MainLayout/ArtArea"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.97300005
+offset_right = 5.799988
+offset_bottom = 0.063964844
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/line_spacing = 1
-theme_override_fonts/font = SubResource("SystemFont_ascii")
+theme_override_fonts/font = ExtResource("3_b7guu")
 theme_override_font_sizes/font_size = 11
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -100,6 +99,7 @@ theme_override_constants/separation = 8
 [node name="StartButton" parent="MainMargin/MainLayout/MenuArea/MenuLayout/MainMenu" instance=ExtResource("3_choice_button")]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b7guu")
 text = "Iniciar"
 alignment = 1
 
@@ -135,6 +135,7 @@ mouse_filter = 2
 
 [node name="Credits" type="Label" parent="MainMargin/MainLayout/MenuArea/MenuLayout"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b7guu")
 theme_override_font_sizes/font_size = 14
 text = "Escrito por: Stella D'Avansso
 Desenvolvido por: Guilherme Abrahão e Luiz Malta"
@@ -155,6 +156,7 @@ theme_override_constants/margin_bottom = 5
 [node name="GameText" type="RichTextLabel" parent="MainMargin/MainLayout/NarrativeArea"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_b7guu")
 theme_override_font_sizes/normal_font_size = 16
 theme_override_font_sizes/bold_font_size = 16
 theme_override_font_sizes/bold_italics_font_size = 16
@@ -185,6 +187,7 @@ theme_override_constants/separation = 5
 
 [node name="ChoicePreview" parent="MainMargin/MainLayout/ChoicesArea/ChoicesRow/ChoicesContainer" instance=ExtResource("3_choice_button")]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_b7guu")
 
 [node name="ChoiceSpacer" type="Control" parent="MainMargin/MainLayout/ChoicesArea/ChoicesRow"]
 layout_mode = 2
