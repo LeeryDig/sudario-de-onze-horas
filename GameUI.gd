@@ -4,11 +4,15 @@ const Story := preload("res://Story.gd")
 const ChoiceButtonScene: PackedScene = preload("res://ui/ChoiceButton.tscn")
 const ASCII_MIN_FONT_SIZE := 4
 const ASCII_MAX_FONT_SIZE := 11
-const MENU_ART_PATH := "res://art/Menu.txt"
+const MENU_FLOWER_PATH := "res://art/Menu.txt"
+const MENU_LOGO_PATH := "res://art/Logo.txt"
 const RAIN_DROP_COUNT := 45
 
 @onready var art_area: Control = %ArtArea
 @onready var ascii_background: Label = %ASCIIBackground
+@onready var menu_art: VBoxContainer = %MenuArt
+@onready var menu_flower: Label = %MenuFlower
+@onready var menu_logo: Label = %MenuLogo
 @onready var narrative_area: Control = %NarrativeArea
 @onready var game_text: RichTextLabel = %GameText
 @onready var choices_area: Control = %ChoicesArea
@@ -27,15 +31,19 @@ var current_page := 0
 
 func _ready() -> void:
 	randomize()
-	resized.connect(queue_ascii_art_fit)
+	art_area.resized.connect(queue_ascii_art_fit)
 	start_button.pressed.connect(start_game)
 	options_button.pressed.connect(show_options)
 	back_button.pressed.connect(show_main_menu)
 	create_rain.call_deferred()
-	render_art(MENU_ART_PATH)
+	menu_flower.text = FileAccess.get_file_as_string(MENU_FLOWER_PATH).replace("\t", "    ").trim_suffix("\n")
+	menu_logo.text = FileAccess.get_file_as_string(MENU_LOGO_PATH).strip_edges(false, true)
 	show_main_menu()
 
 func show_main_menu() -> void:
+	art_area.size_flags_stretch_ratio = 13.0
+	ascii_background.hide()
+	menu_art.show()
 	menu_area.show()
 	main_menu.show()
 	options_menu.hide()
@@ -48,6 +56,9 @@ func show_options() -> void:
 	options_menu.show()
 
 func start_game() -> void:
+	art_area.size_flags_stretch_ratio = 7.0
+	menu_art.hide()
+	ascii_background.show()
 	menu_area.hide()
 	rain_layer.hide()
 	narrative_area.show()
@@ -56,7 +67,6 @@ func start_game() -> void:
 
 func return_to_main_menu() -> void:
 	show_main_menu()
-	render_art(MENU_ART_PATH)
 
 func show_node(node_id: String) -> void:
 	current_node_id = node_id
