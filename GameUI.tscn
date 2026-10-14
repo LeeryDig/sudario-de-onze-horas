@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cj2thjd68d1m4"]
+[gd_scene load_steps=8 format=3 uid="uid://cj2thjd68d1m4"]
 
 [ext_resource type="Script" uid="uid://dcwd1h6r3wto2" path="res://GameUI.gd" id="1_gameui"]
 [ext_resource type="Theme" uid="uid://bisxy8sqrpawt" path="res://ui/GameTheme.tres" id="2_theme"]
 [ext_resource type="FontFile" uid="uid://dcwvfc6o60i3r" path="res://art/JetBrainsMono-Medium.ttf" id="3_b7guu"]
 [ext_resource type="PackedScene" uid="uid://ch2r35ob5k4o2" path="res://ui/ChoiceButton.tscn" id="3_choice_button"]
+[ext_resource type="AudioStream" uid="uid://yyf0gbcp66ap" path="res://ui/Click.mp3" id="5_gck35"]
+[ext_resource type="AudioStream" uid="uid://bowncwefdamc" path="res://ui/Start.mp3" id="6_m61ox"]
+
+[sub_resource type="GDScript" id="GDScript_m61ox"]
+script/source = "extends Button
+"
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -223,8 +229,17 @@ theme_override_constants/separation = 5
 [node name="ChoicePreview" parent="MainMargin/MainLayout/ChoicesArea/ChoicesRow/ChoicesContainer" instance=ExtResource("3_choice_button")]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_b7guu")
+script = SubResource("GDScript_m61ox")
 
 [node name="ChoiceSpacer" type="Control" parent="MainMargin/MainLayout/ChoicesArea/ChoicesRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_gck35")
+
+[node name="Start" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_m61ox")
+
+[connection signal="pressed" from="MainMargin/MainLayout/MenuArea/MenuLayout/MainMenu/StartButton" to="." method="_on_start_button_pressed"]

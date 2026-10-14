@@ -183,9 +183,13 @@ func handle_choice(choice: Dictionary) -> void:
 func add_choice_button(label: String, callback: Callable) -> void:
 	var button := ChoiceButtonScene.instantiate() as Button
 	button.text = label
+	button.pressed.connect($Click.play)
 	button.pressed.connect(callback)
 	choices_container.add_child(button)
 
 func clear_choices() -> void:
 	for child in choices_container.get_children():
 		child.queue_free()
+
+func _on_start_button_pressed() -> void:
+	$Start.play()
