@@ -192,4 +192,4 @@ func clear_choices() -> void:
 		child.queue_free()
 
 func _on_start_button_pressed() -> void:
-	$Start.play()
+	$Click.play()
